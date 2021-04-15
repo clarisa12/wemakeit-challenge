@@ -7,6 +7,14 @@ const Step1 = ({ setForm, formData, navigation }) => {
     const { projectName, projectIntro, projectDescription } = formData;
     const { next } = navigation;
 
+    const isEnabled =
+        projectName &&
+        projectName.length > 0 &&
+        projectIntro &&
+        projectIntro.length > 0 &&
+        projectDescription &&
+        projectDescription.length > 0;
+
     return (
         <div className="form">
             <ItemForm
@@ -35,7 +43,9 @@ const Step1 = ({ setForm, formData, navigation }) => {
                 value={projectDescription}
             />
             <div>
-                <button onClick={next}>Next</button>
+                <button disabled={!isEnabled} onClick={next}>
+                    Next
+                </button>
             </div>
         </div>
     );

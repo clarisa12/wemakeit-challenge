@@ -15,6 +15,21 @@ const Step5 = ({ sendForm, setForm, formData, navigation }) => {
         zip,
     } = formData;
     const { previous, go } = navigation;
+    const isEnabled =
+        firstName &&
+        firstName.length > 0 &&
+        lastName &&
+        lastName.length > 0 &&
+        phone &&
+        phone.length > 0 &&
+        email &&
+        email.length > 0 &&
+        address &&
+        address.length > 0 &&
+        state &&
+        state.length > 0 &&
+        zip &&
+        zip.length > 0;
 
     return (
         <div className="form">
@@ -86,6 +101,7 @@ const Step5 = ({ sendForm, setForm, formData, navigation }) => {
                     Previous
                 </button>
                 <button
+                    disabled={!isEnabled}
                     type="button"
                     id="submit"
                     onClick={() => {
