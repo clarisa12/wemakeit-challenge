@@ -39,6 +39,10 @@ button {
     border-style: none;
 }
 
+button:disabled {
+    background-color: #3d6e29;
+}
+
 button:active {
     padding: 0.5rem 1rem;
     background-color: #299200;
@@ -90,6 +94,10 @@ button:active {
     border-color: #0d83b9 !important ;
     border-style: none;
     outline: none !important;
+}
+
+#submit:disabled {
+    background-color: #27566b !important;
 }
 
 #button-add {

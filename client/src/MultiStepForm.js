@@ -29,15 +29,12 @@ const MultiStepForm = ({}) => {
     const { id } = step;
 
     async function sendForm() {
-        const formData = new FormData();
-        const elements = formRef.current.elements;
-        for (const idx in elements) {
-            formData.append(elements[idx].name, elements[idx].value);
-        }
-
         const response = await fetch(formRef.current.getAttribute("action"), {
             method: "POST",
-            body: formData,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...formData, ...images, ...pledges }),
         });
     }
 
@@ -77,12 +74,7 @@ const MultiStepForm = ({}) => {
                 width="600px"
                 className="LogoHeader"
             />
-            <form
-                ref={formRef}
-                action="http://localhost:8000/form"
-                method="post"
-                enctype="multipart/form-data"
-            >
+            <form ref={formRef} action="http://localhost:8000/form">
                 {getFormStep()}
             </form>
             <div id="steps">
