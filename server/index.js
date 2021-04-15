@@ -1,22 +1,18 @@
 const express = require("express");
 const app = express();
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const port = 8000;
 
 app.use(cors());
+app.use(bodyParser.json());
 app.options("*", cors());
 
-app.post("/form", upload.array("images"), (req, res) => {
-    // req.files is array of `photos` files
-    // req.body will contain the text fields, if there were any
-
+app.post("/form", (req, res) => {
+    //TODO: data sanitization and validation & store in database
     console.log(req.body);
-    res.status(201).send;
-
-    res.send("ok");
+    res.status(201).send("created");
 });
 
 app.listen(port, () => {
